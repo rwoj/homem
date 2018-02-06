@@ -1,36 +1,25 @@
 import React from 'react';
 import { createStore, applyMiddleware } from "redux"
+import { composeWithDevTools } from 'remote-redux-devtools'
 import { Provider } from 'react-redux'
 import thunk from "redux-thunk";
 import { StyleSheet, Text, View } from 'react-native'
 import rootReducer from './reducers'
-import Ogrzewanie from './components/Ogrzewanie';
+import MainNavigator from './components/MainNavigator'
 
 const store=createStore(
   rootReducer,
-  applyMiddleware(thunk) 
+  composeWithDevTools(applyMiddleware(thunk)) 
 )
 
+store.dispatch(()=>({type: "cokolwiek", dane: "heja"}));
 
 export default class App extends React.Component {
-
   render() {
     return (
       <Provider store={store}>
-        <View style={styles.container}>
-          {/* <MainNavigator /> */}
-          <Ogrzewanie />
-        </View>
+          <MainNavigator />
       </Provider>
     )
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});

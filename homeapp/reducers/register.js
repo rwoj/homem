@@ -1,7 +1,7 @@
 export default function register(state={}, action={}) {
     switch (action.type) {
       case 'cokolwiek':
-        return state
+        return action.dane
       default:
         return state;
     }

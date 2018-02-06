@@ -1,43 +1,61 @@
-import React from 'react'
 import {StackNavigator } from 'react-navigation'
+import Dom from './Dom'
 import Ogrzewanie from './Ogrzewanie'
+import Swiatlo from './Swiatlo'
+import Czujki from './Czujki'
 
-const MainNavigator = StackNavigator({
-    Home: {
-    screen: Ogrzewanie,
-    navigationOptions: {
-      header: null
+export default MainNavigator = StackNavigator(
+    {
+        Dom: {
+            screen: Dom,
+            navigationOptions: {
+                title: 'Dom',
+                backgroundColor: '#888'
+            }
+        },
+        Ogrzewanie: {
+            screen: Ogrzewanie,
+            navigationOptions: {
+                title: 'Ogrzewanie',
+                backgroundColor: '#888'
+            }
+        }, 
+        Swiatlo: {
+            screen: Swiatlo,
+            navigationOptions: {
+                title: 'Swiatlo',
+                backgroundColor: '#888'
+            }
+        }, 
+        Czujki: {
+            screen: Czujki,
+            navigationOptions: {
+                title: 'Czujki',
+                backgroundColor: '#888'
+            }
+        } 
+    },
+    {
+        initialRouteName: 'Dom',
     }
-  },
-//   DeckView: {
-//     screen: DeckView,
-//     navigationOptions: {
-//       title: 'Deck Info',
-//       headerTintColor: white,
-//       headerStyle: {
-//         backgroundColor: purple
-//       }
-//     }
-//   },
-//   AddCard: {
-//     screen: AddCard,
-//       navigationOptions: {
-//         title: 'Add Card',
-//         headerTintColor: white,
-//         headerStyle: {
-//           backgroundColor: purple
-//         }
-//       }
-//     },
-//     Quiz: {
-//       screen: Quiz,
-//         navigationOptions: {
-//           title: 'Quiz',
-//           headerTintColor: white,
-//           headerStyle: {
-//             backgroundColor: purple
-//           }
-//         }
-//     }
-})
-export default MainNavigator
+)
+                //   AddCard: {
+                //     screen: AddCard,
+                //       navigationOptions: {
+                //         title: 'Add Card',
+                //         headerTintColor: white,
+                //         headerStyle: {
+                //           backgroundColor: purple
+                //         }
+                //       }
+                //     },
+                //     Quiz: {
+                //       screen: Quiz,
+                //         navigationOptions: {
+                //           title: 'Quiz',
+                //           headerTintColor: white,
+                //           headerStyle: {
+                //             backgroundColor: purple
+                //           }
+                //         }
+                //     }
