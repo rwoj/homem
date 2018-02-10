@@ -1,8 +1,8 @@
 import express from "express"
 import bodyParser from "body-parser"
+import horizon from '@horizon/server'
 import routes from "./routes"
 import config from "./config/config"
-import horizon from '@horizon/server'
 
 const app = express();
 
