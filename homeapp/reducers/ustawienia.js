@@ -1,4 +1,4 @@
-import { createSelector } from "reselect";
+import { createSelector } from 'reselect'
 
 export default function ustawienia(state={}, action={}) {
   switch (action.type) {

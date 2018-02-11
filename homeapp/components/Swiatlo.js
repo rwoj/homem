@@ -4,13 +4,26 @@ import {connect} from 'react-redux'
 import {wyjsciaSelector} from '../reducers/register'
 import {konfigSelector} from '../reducers/ustawienia'
 import SwiatloForm from './SwiatloForm'
+import api from '../api'
 
 class Swiatlo extends React.Component {
+    state={
+        poziom: 'parter'
+    }
+    zapisz = (addr, value)=> 
+        api.rejestr.wyslijZmiane(addr, value)
+
     render(){
+        const {poziom} = this.state
         const {konfig, wyjscia} = this.props
-        const currentSwiatla=[{"poziom": 'parter', "data": []},
-                           {"poziom": 'pietro', "data": []},
-                           {"poziom": 'calyDom', "data": []}]
+        const currentSwiatla={
+            parter: {},
+            pietro: {},
+            calyDom: {}
+        }   
+            // [{"poziom": 'parter', "data": []},
+            //                {"poziom": 'pietro', "data": []},
+            //                {"poziom": 'calyDom', "data": []}]
 
         konfig.map(x=>{
             const swiatlo = x.idWy>0? wyjscia.find(y=>y.id===x.idWy):{value: -1}
@@ -19,30 +32,47 @@ class Swiatlo extends React.Component {
             // const swiatloSterValue = swiatloSter?swiatloSter.value:''
             if(x.rodzaj==='swiatlo'){
                 if (x.poziom==='parter'){
-                    return currentSwiatla[0].data.push(
+                    if (!currentSwiatla.parter[x.nazwaLokalu]){
+                        currentSwiatla.parter[x.nazwaLokalu]=[]
+                    }
+                    return currentSwiatla.parter[x.nazwaLokalu].push(
                         {...x, swiatlo : swiatloValue})
-                            // , swiatloSter: swiatloSterValue })
                 } else if (x.poziom==='pietro') {
-                    return currentSwiatla[1].data.push(
+                    if (!currentSwiatla.pietro[x.nazwaLokalu]){
+                        currentSwiatla.pietro[x.nazwaLokalu]=[]
+                    }
+                    return currentSwiatla.pietro[x.nazwaLokalu].push(
                         {...x, swiatlo : swiatloValue})
-                        // , swiatloSter: swiatloSterValue })
-                } 
-                    return currentSwiatla[2].data.push(
-                        {...x, swiatlo : swiatloValue})
-                        // , swiatloSter: swiatloSterValue })
+                }
+                if (!currentSwiatla.calyDom[x.nazwaLokalu]){
+                    currentSwiatla.calyDom[x.nazwaLokalu]=[]
+                }
+                return currentSwiatla.calyDom[x.nazwaLokalu].push(
+                    {...x, swiatlo : swiatloValue}) 
             }
         })
+        // console.log("parter",currentSwiatla.parter)
+        const dataToShow=[]
+        for (let lokal in currentSwiatla[poziom] ){
+            dataToShow.push({lokal: lokal, data: currentSwiatla[poziom][lokal] })
+        }
+
         return (
             <View style={styles.container}>
-            <SectionList
-              sections={currentSwiatla}
-              renderItem={({item}) => 
-                <SwiatloForm item={item} />}    
-              renderSectionHeader={({section}) => 
-                <Text style={styles.sectionHeader}>{section.poziom}</Text>}
-              keyExtractor={(item, index) => index}
-            />
-          </View>
+                <View style={styles.buttons}>
+                    <Button color='#3b84c4' onPress={()=>this.setState({poziom: 'parter'})} title='Parter'/>
+                    <Button color='#3b84c4' onPress={()=>this.setState({poziom: 'pietro'})} title='Piętro'/>
+                    <Button color='#3b84c4' onPress={()=>this.setState({poziom: 'calyDom'})} title='Zewnętrzne'/>
+                </View>    
+                <SectionList style={styles.box}
+                    sections={dataToShow}
+                    renderItem={({item}) => 
+                        <SwiatloForm item={item} zapisz={this.zapisz}/>}    
+                    renderSectionHeader={({section}) => 
+                        <Text style={styles.sectionHeader}>{section.lokal}</Text>}
+                    keyExtractor={(item, index) => index}
+                />
+            </View>
         )
     }
 }
@@ -57,17 +87,38 @@ export default connect(mapStateToProps)(Swiatlo)
 
 const styles = StyleSheet.create({
     container: {
-     flex: 1,
-     paddingTop: 22
+        flex: 1,
+        backgroundColor: '#202c36',
+        alignItems: 'center',
+        justifyContent: 'center',
+        paddingTop: 22
+    },
+    buttons: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        backgroundColor: '#202c36',
+        width: 350,
+       },
+    box: {
+        flex: 1,
+        backgroundColor: 'chocolate',
+        borderStyle: 'solid',
+        borderColor: '#3e2a19',
+        borderWidth: 5,
+        borderRadius: 10,
+        width: 350,
+        height: 500,
+        margin: 10,
     },
     sectionHeader: {
-      paddingTop: 2,
+      paddingTop: 5,
       paddingLeft: 10,
       paddingRight: 10,
       paddingBottom: 2,
-      fontSize: 14,
+      fontSize: 16,
       fontWeight: 'bold',
-      backgroundColor: 'rgba(247,247,247,1.0)',
+      backgroundColor: '#3e2a19',
+      color: '#c9d5df'
     },
     item: {
       padding: 10,

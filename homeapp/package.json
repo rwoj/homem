@@ -26,12 +26,13 @@
     "expo": "^25.0.0",
     "react": "16.2.0",
     "react-native": "0.52.0",
+    "react-native-elements": "^0.19.0",
     "react-navigation": "^1.0.0-beta.29",
     "react-redux": "^5.0.6",
     "react-router-dom": "^4.2.2",
     "redux": "^3.7.2",
     "redux-thunk": "^2.2.0",
-    "remote-redux-devtools": "0.5.0"
-  },
-  "proxy": "http://localhost:8082"
+    "remote-redux-devtools": "0.5.0",
+    "reselect": "^3.0.1"
+  }
 }
