@@ -1,5 +1,6 @@
 import React from 'react'
-import { StyleSheet, Text, View, Button, SectionList } from 'react-native'
+import { Button } from 'react-native-elements'
+import { StyleSheet, Text, View, SectionList, TouchableOpacity } from 'react-native'
 import {connect} from 'react-redux'
 import {wyjsciaSelector} from '../reducers/register'
 import {konfigSelector} from '../reducers/ustawienia'
@@ -10,26 +11,16 @@ class Swiatlo extends React.Component {
     state={
         poziom: 'parter'
     }
-    zapisz = (addr, value)=> 
-        api.rejestr.wyslijZmiane(addr, value)
+    zapisz = (addr, value)=> api.rejestr.wyslijZmiane(addr, value)
 
     render(){
         const {poziom} = this.state
         const {konfig, wyjscia} = this.props
-        const currentSwiatla={
-            parter: {},
-            pietro: {},
-            calyDom: {}
-        }   
-            // [{"poziom": 'parter', "data": []},
-            //                {"poziom": 'pietro', "data": []},
-            //                {"poziom": 'calyDom', "data": []}]
+        const currentSwiatla={ parter: {}, pietro: {}, calyDom: {} }   
 
         konfig.map(x=>{
             const swiatlo = x.idWy>0? wyjscia.find(y=>y.id===x.idWy):{value: -1}
             const swiatloValue = swiatlo?swiatlo.value:-1
-            // const swiatloSter = x.idWySter>0? wyjscia.find(y=>y.id===x.idWySter):{value: ''}
-            // const swiatloSterValue = swiatloSter?swiatloSter.value:''
             if(x.rodzaj==='swiatlo'){
                 if (x.poziom==='parter'){
                     if (!currentSwiatla.parter[x.nazwaLokalu]){
@@ -51,7 +42,6 @@ class Swiatlo extends React.Component {
                     {...x, swiatlo : swiatloValue}) 
             }
         })
-        // console.log("parter",currentSwiatla.parter)
         const dataToShow=[]
         for (let lokal in currentSwiatla[poziom] ){
             dataToShow.push({lokal: lokal, data: currentSwiatla[poziom][lokal] })
@@ -60,9 +50,15 @@ class Swiatlo extends React.Component {
         return (
             <View style={styles.container}>
                 <View style={styles.buttons}>
-                    <Button color='#3b84c4' onPress={()=>this.setState({poziom: 'parter'})} title='Parter'/>
-                    <Button color='#3b84c4' onPress={()=>this.setState({poziom: 'pietro'})} title='Piętro'/>
-                    <Button color='#3b84c4' onPress={()=>this.setState({poziom: 'calyDom'})} title='Zewnętrzne'/>
+                    <TouchableOpacity onPress={()=>this.setState({poziom: 'parter'})}> 
+                        <Text style={styles.item}>Parter</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={()=>this.setState({poziom: 'pietro'})} text="Piętro">
+                        <Text style={styles.item}>Piętro</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity  onPress={()=>this.setState({poziom: 'calyDom'})}>
+                        <Text style={styles.item}>Zewnętrzne</Text>
+                    </TouchableOpacity>
                 </View>    
                 <SectionList style={styles.box}
                     sections={dataToShow}
@@ -88,17 +84,17 @@ export default connect(mapStateToProps)(Swiatlo)
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        flexDirection: 'column',
+        justifyContent: 'flex-start',
         backgroundColor: '#202c36',
-        alignItems: 'center',
-        justifyContent: 'center',
-        paddingTop: 22
     },
     buttons: {
         flexDirection: 'row',
         justifyContent: 'space-between',
         backgroundColor: '#202c36',
-        width: 350,
-       },
+        // height: 60,
+        margin: 10
+    },
     box: {
         flex: 1,
         backgroundColor: 'chocolate',
@@ -106,7 +102,6 @@ const styles = StyleSheet.create({
         borderColor: '#3e2a19',
         borderWidth: 5,
         borderRadius: 10,
-        width: 350,
         height: 500,
         margin: 10,
     },
@@ -115,14 +110,19 @@ const styles = StyleSheet.create({
       paddingLeft: 10,
       paddingRight: 10,
       paddingBottom: 2,
-      fontSize: 16,
+      fontSize: 24,
       fontWeight: 'bold',
       backgroundColor: '#3e2a19',
       color: '#c9d5df'
     },
     item: {
-      padding: 10,
-      fontSize: 18,
-      height: 44,
-    },
+        marginRight: 5,
+        marginLeft: 5,
+        color: '#c9d5df',
+        backgroundColor: '#3b84c4',
+        borderRadius: 10,
+        fontSize: 32,
+        padding: 5,
+        fontWeight: 'bold',
+    }
   })

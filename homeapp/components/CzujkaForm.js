@@ -19,31 +19,30 @@ export default CzujkaForm
 
 const styles = StyleSheet.create({
     box: {
-        flex: 1, 
-        flexDirection: 'row',
-        flexWrap: 'wrap',
+        flex: 1,
+        flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
         backgroundColor: 'steelblue',
         borderRadius: 20,
-        width: 350,
         height: 250,
         margin: 10,
     },
     text: {
-        width: 350,
-        color: '#202c36',
-        fontSize: 18,
-        fontWeight: 'bold',
-        padding: 6,
         margin: 10,
-    }, 
+        color: '#202c36',
+        fontSize: 24,
+        fontWeight: 'bold',
+        padding: 6, 
+    },
     item: {
+        width: 350,
         color: '#3e2a19',
         backgroundColor: '#e3791c',
-        fontSize: 14,
+        borderRadius: 10,
+        fontSize: 20,
         fontWeight: 'bold',
-        marginLeft: 10,
-        marginRight: 10,
+        marginLeft: 30,
+        marginRight: 30,
     }
   })

@@ -1,6 +1,7 @@
 import React from 'react'
-import { StyleSheet, Text, View, TouchableOpacity, SectionList } from 'react-native'
 import {connect} from 'react-redux'
+// import {Button} from 'react-native-elements'
+import { StyleSheet, Text, View, TouchableOpacity , SectionList } from 'react-native'
 import {wyjsciaSelector, wySatelSelector} from '../reducers/register'
 import {konfigSelector} from '../reducers/ustawienia'
 import CzujkaForm from './CzujkaForm'
@@ -30,26 +31,32 @@ class Dom extends React.Component {
         return (
             <View style={styles.container}>
                 <View style={styles.box}>
-                    <Text style={styles.text}> Włączone światła: {howManyLights}  </Text>
-                    <TouchableOpacity style={styles.boxPress} 
-                        onPress={() => this.props.navigation.navigate('Swiatlo')}>
-                        <Text style={styles.text}> Swiatla </Text>
-                    </TouchableOpacity>    
-                    <TouchableOpacity style={styles.boxPress} 
-                        onPress={() => this.props.navigation.navigate('Efekty')}>
-                        <Text style={styles.text}> Efekty/sceny </Text>
-                    </TouchableOpacity>    
+                    {/* <View style={styles.boxes}> */}
+                        <Text style={styles.text}> Włączone światła: {howManyLights}  </Text>
+                    {/* </View> */}
+                    <View style={styles.boxes}>
+                        <TouchableOpacity style={styles.boxPress} 
+                            onPress={() => this.props.navigation.navigate('Swiatlo')}>
+                            <Text style={styles.text}> Swiatla </Text>
+                        </TouchableOpacity>    
+                        <TouchableOpacity style={styles.boxPress} 
+                            onPress={() => this.props.navigation.navigate('Efekty')}>
+                            <Text style={styles.text}> Efekty/sceny </Text>
+                        </TouchableOpacity>    
+                    </View>
                 </View>
                 <View style={styles.box}>
                     <Text style={styles.text}> Włączone grzejniki: {howManyGrzanie}  </Text>
-                    <TouchableOpacity style={styles.boxPress} 
-                        onPress={() => this.props.navigation.navigate('Ogrzewanie')}>
-                        <Text style={styles.text} >Ogrzewanie</Text>
-                    </TouchableOpacity>       
-                    <TouchableOpacity style={styles.boxPress} 
-                        onPress={() => this.props.navigation.navigate('Harmonogram')}>
-                        <Text style={styles.text}>Harmonogram</Text>
-                    </TouchableOpacity>    
+                    <View style={styles.boxes}>
+                        <TouchableOpacity style={styles.boxPress} 
+                            onPress={() => this.props.navigation.navigate('Ogrzewanie')}>
+                            <Text style={styles.text} >Ogrzewanie</Text>
+                        </TouchableOpacity>       
+                        <TouchableOpacity style={styles.boxPress} 
+                            onPress={() => this.props.navigation.navigate('Harmonogram')}>
+                            <Text style={styles.text}>Harmonogram</Text>
+                        </TouchableOpacity>    
+                    </View>    
                 </View>
                 <CzujkaForm howManyActive={howManyActive} currentCzujki={currentCzujki} />
             </View>
@@ -70,45 +77,44 @@ export default connect(mapStateToProps)(Dom)
 const styles = StyleSheet.create({
     container: {
       flex: 1,
-      flexDirection: 'column',
       backgroundColor: '#202c36',
-      alignItems: 'center',
-      justifyContent: 'center',
     },
     box: {
-        flex: 1, 
-        flexDirection: 'row',
-        flexWrap: 'wrap',
+        flex: 1,
+        flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
         backgroundColor: 'steelblue',
         borderRadius: 20,
-        width: 350,
         height: 250,
         margin: 10,
     },
+    boxes: {
+        flex: 1, 
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: 'steelblue',
+        borderRadius: 20,
+        margin: 10,
+    },
     boxPress: {
+        alignItems: 'center',
+        justifyContent: 'center',
         backgroundColor: 'chocolate',
         borderStyle: 'solid',
         borderColor: '#3e2a19',
         borderWidth: 5,
         borderRadius: 20,
-        width: 150,
-        height: 100,
-        margin: 10,
-    },
-    boxPressLong: {
-        backgroundColor: 'green',
-        width: 320,
-        height: 50,
+        width: 220,
+        height: 170,
         margin: 10,
     },
     text: {
-        width: 350,
         margin: 10,
         color: '#202c36',
-        fontSize: 18,
+        fontSize: 24,
         fontWeight: 'bold',
-        padding: 6
+        padding: 6, 
     },
   })

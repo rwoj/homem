@@ -4,7 +4,6 @@ import { composeWithDevTools } from 'remote-redux-devtools'
 import { Provider } from 'react-redux'
 import thunk from "redux-thunk"
 import Horizon from '@horizon/client'
-import { StyleSheet, Text, View } from 'react-native'
 import rootReducer from './reducers'
 import MainNavigator from './components/MainNavigator'
 import api from "./api";
