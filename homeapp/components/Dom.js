@@ -12,8 +12,8 @@ class Dom extends React.Component {
         const currentCzujki=[]
         const grzanie=[16941, 16950]
         let howManyActive=0 
-        const wyFind=wyjscia.find(x=>x.id===16999)   
-        const howManyLights= wyFind?wyFind.value:0
+        const wyFind=wyjscia.length>0 ? wyjscia.find(x=>x.id===16999): -1   
+        const howManyLights= wyFind>-1 ? wyFind.value : 0
         const howManyGrzanie=wyjscia.reduce((acc,x)=>
             acc=(x.id>=grzanie[0]&&x.id<=grzanie[1]&&x.value===1)?acc+=1:acc , 0)  
 

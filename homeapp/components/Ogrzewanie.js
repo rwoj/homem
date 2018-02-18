@@ -1,7 +1,7 @@
 import React from 'react'
 import { StyleSheet, Text, View, SectionList, TouchableOpacity } from 'react-native'
 import {connect} from 'react-redux'
-import {wyjsciaSelector, wyTempSelector} from '../reducers/register'
+import {wyjsciaSelector, wyTempSelector, wyTempNastSelector} from '../reducers/register'
 import {konfigTempSelector} from '../reducers/ustawienia'
 import OgrzewanieForm from './OgrzewanieForm'
 import api from '../api'
@@ -16,15 +16,18 @@ class Ogrzewanie extends React.Component {
 
   render(){
     const {poziom} = this.state
-    const {konfigTemp, wyTemp, wyjscia} = this.props
+    const {konfigTemp, wyTemp, wyTempNast, wyjscia} = this.props
     const currentTemp=[{"poziom": 'parter', "data": []},
                         {"poziom": 'pietro', "data": []}]
     const currentTempCalyDom =[{"poziom": 'calyDom', "data": []}]
     
+    // console.log("konfig", konfigTemp)
+
     konfigTemp.map(x=>{
-        const temp = x.idTempWy>0? wyTemp.find(y=>y.id===x.idTempWy):{value: ''}
+      // console.log(x.idTempWy, wyTemp[0].id)
+        const temp = x.idTempWy !== 0 && wyTemp.length>0 ? wyTemp.find(y => y.id===x.idTempWy): {value: ''}
         const tempValue = temp?temp.value:''
-        const tempNast = x.idTempWy>0? wyTemp.find(y=>y.id===x.idTempNast):{value: ''}
+        const tempNast = x.idTempWy>0? wyTempNast.find(y=>y.id===x.idTempNast):{value: ''}
         const tempNastValue = tempNast?tempNast.value:''
         const ogrzew = x.idGrzanie>0? wyjscia.find(y=>y.id===x.idGrzanie):{value: ''}
         const ogrzewValue = ogrzew?ogrzew.value:''
@@ -63,9 +66,10 @@ class Ogrzewanie extends React.Component {
 }
 function mapStateToProps (state){
     return {
+      wyTempNast: wyTempNastSelector(state),
       wyTemp: wyTempSelector(state),
       wyjscia: wyjsciaSelector(state),
-      konfigTemp: konfigTempSelector(state), 
+      konfigTemp: konfigTempSelector(state)
     }
 }
 

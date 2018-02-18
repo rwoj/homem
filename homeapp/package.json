@@ -21,7 +21,6 @@
     "preset": "jest-expo"
   },
   "dependencies": {
-    "@horizon/client": "^2.0.0",
     "axios": "^0.17.1",
     "expo": "^25.0.0",
     "react": "16.2.0",
@@ -33,6 +32,7 @@
     "redux": "^3.7.2",
     "redux-thunk": "^2.2.0",
     "remote-redux-devtools": "0.5.0",
-    "reselect": "^3.0.1"
+    "reselect": "^3.0.1",
+    "socket.io": "^2.0.4"
   }
 }
