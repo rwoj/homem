@@ -1,18 +1,26 @@
 import React from 'react'
 import {connect} from 'react-redux'
+// import openSocket from 'socket.io-client'
 // import {Button} from 'react-native-elements'
 import { StyleSheet, Text, View, TouchableOpacity , SectionList } from 'react-native'
 import {wyjsciaSelector, wySatelSelector} from '../reducers/register'
 import {konfigSelector} from '../reducers/ustawienia'
 import CzujkaForm from './CzujkaForm'
+import {zmienRejestr} from '../actions/rejestr'
+
 
 class Dom extends React.Component {
+    // componentDidMount(){
+    //     const socket = openSocket('http://192.168.0.133:8081')
+    //     socket.on('zmiana', zmienRejestr)
+    // }
+
     render(){
         const {konfig, wyjscia, wySatel} = this.props
         const currentCzujki=[]
         const grzanie=[16941, 16950]
         let howManyActive=0 
-        const wyFind=wyjscia.length>0 ? wyjscia.find(x=>x.id===16999): -1   
+        const wyFind=wyjscia && wyjscia.length>0 ? wyjscia.find(x=>x.id===16999): -1   
         const howManyLights= wyFind>-1 ? wyFind.value : 0
         const howManyGrzanie=wyjscia.reduce((acc,x)=>
             acc=(x.id>=grzanie[0]&&x.id<=grzanie[1]&&x.value===1)?acc+=1:acc , 0)  
@@ -72,7 +80,7 @@ function mapStateToProps (state){
     }
   }
 
-export default connect(mapStateToProps)(Dom)
+export default connect(mapStateToProps, {zmienRejestr})(Dom)
 
 const styles = StyleSheet.create({
     container: {

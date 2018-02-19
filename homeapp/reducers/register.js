@@ -14,12 +14,12 @@ export default function register(state={}, action={}) {
 }
 const wyjsciaHashSelector = state => state.register.wyjscia && state.register.wyjscia.length>0 ? state.register.wyjscia : []
 export const wyjsciaSelector = createSelector(wyjsciaHashSelector, hash =>
-  hash
+  Object.values(hash)
 )
 
 const wySatelHashSelector = state =>  state.register.wySatel && state.register.wySatel.length>0 ? state.register.wySatel : [];
 export const wySatelSelector = createSelector(wySatelHashSelector, hash =>
-  hash
+  Object.values(hash)
 )
 
 const wyTempHashSelector = state => state.register.wyTemp && state.register.wyTemp.length>0 ? state.register.wyTemp : [];

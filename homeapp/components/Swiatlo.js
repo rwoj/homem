@@ -19,7 +19,7 @@ class Swiatlo extends React.Component {
         const currentSwiatla={ parter: {}, pietro: {}, calyDom: {} }   
 
         konfig.map(x=>{
-            const swiatlo = x.idWy>0? wyjscia.find(y=>y.id===x.idWy):{value: -1}
+            const swiatlo = x.idWy>0 ? wyjscia.find(y=>y.id===x.idWy):{value: -1}
             const swiatloValue = swiatlo?swiatlo.value:-1
             if(x.rodzaj==='swiatlo'){
                 if (x.poziom==='parter'){
