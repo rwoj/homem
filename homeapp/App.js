@@ -1,14 +1,15 @@
-import React from 'react';
+import React from 'react'
 import { createStore, applyMiddleware } from "redux"
-import { composeWithDevTools } from 'remote-redux-devtools'
 import { Provider } from 'react-redux'
 import thunk from "redux-thunk"
+import { composeWithDevTools } from 'remote-redux-devtools'
 import openSocket from 'socket.io-client'
+
 import rootReducer from './reducers'
-import MainNavigator from './components/MainNavigator'
 import api from "./api";
 import {pobraneUstawienia} from './actions/ustawienia'
 import {odczytRejestru, zmianaRejestru} from "./actions/rejestr"
+import MainNavigator from './components/MainNavigator'
 
 const store=createStore(
   rootReducer,

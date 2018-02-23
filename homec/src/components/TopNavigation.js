@@ -5,16 +5,13 @@ const TopNavigation =()=>
   (
         <Nav>
           <NavItem>
-            <NavLink href='/'>Strona startowa</NavLink>
+            <NavLink href='/'>Dom</NavLink>
           </NavItem>
           <NavItem>
-            <NavLink href='/rejestr'>Rejestr</NavLink>
+            <NavLink href='/swiatlo'>Światło</NavLink>
           </NavItem>
-          {/* <NavItem>
-            <NavLink href='/konfiguracja'>Konfiguracja</NavLink>
-          </NavItem> */}
           <NavItem>
-            <NavLink href='/ustawienia'>Ustawienia</NavLink>
+            <NavLink href='/ogrzewanie'>Ogrzewanie</NavLink>
           </NavItem>
         </Nav>
    )

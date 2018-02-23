@@ -6,7 +6,7 @@ import { StyleSheet, Text, View, TouchableOpacity , SectionList } from 'react-na
 import {wyjsciaSelector, wySatelSelector} from '../reducers/register'
 import {konfigSelector} from '../reducers/ustawienia'
 import CzujkaForm from './CzujkaForm'
-import {zmienRejestr} from '../actions/rejestr'
+// import {zmienRejestr} from '../actions/rejestr'
 
 
 class Dom extends React.Component {
@@ -80,7 +80,7 @@ function mapStateToProps (state){
     }
   }
 
-export default connect(mapStateToProps, {zmienRejestr})(Dom)
+export default connect(mapStateToProps)(Dom)
 
 const styles = StyleSheet.create({
     container: {
