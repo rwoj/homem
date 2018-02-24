@@ -2,7 +2,7 @@ import React from 'react'
 import { Button } from 'react-native-elements'
 import { StyleSheet, Text, View, SectionList, TouchableOpacity } from 'react-native'
 import {connect} from 'react-redux'
-import {wyjsciaSelector} from '../reducers/register'
+import {wyjsciaHashSelector} from '../reducers/register'
 import {konfigSelector} from '../reducers/ustawienia'
 import SwiatloForm from './SwiatloForm'
 import api from '../api'
@@ -74,7 +74,7 @@ class Swiatlo extends React.Component {
 }
 function mapStateToProps (state){
     return {
-      wyjscia: wyjsciaSelector(state),
+      wyjscia: wyjsciaHashSelector(state),
       konfig: konfigSelector(state), 
     }
   }

@@ -1,7 +1,7 @@
 import React from 'react'
 import { StyleSheet, Text, View, SectionList, TouchableOpacity } from 'react-native'
 import {connect} from 'react-redux'
-import {wyjsciaSelector, wyTempSelector, wyTempNastSelector} from '../reducers/register'
+import {wyjsciaHashSelector, wyTempHashSelector, wyTempNastHashSelector} from '../reducers/register'
 import {konfigTempSelector} from '../reducers/ustawienia'
 import OgrzewanieForm from './OgrzewanieForm'
 import api from '../api'
@@ -66,9 +66,9 @@ class Ogrzewanie extends React.Component {
 }
 function mapStateToProps (state){
     return {
-      wyTempNast: wyTempNastSelector(state),
-      wyTemp: wyTempSelector(state),
-      wyjscia: wyjsciaSelector(state),
+      wyTempNast: wyTempNastHashSelector(state),
+      wyTemp: wyTempHashSelector(state),
+      wyjscia: wyjsciaHashSelector(state),
       konfigTemp: konfigTempSelector(state)
     }
 }

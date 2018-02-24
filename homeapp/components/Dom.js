@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 // import openSocket from 'socket.io-client'
 // import {Button} from 'react-native-elements'
 import { StyleSheet, Text, View, TouchableOpacity , SectionList } from 'react-native'
-import {wyjsciaSelector, wySatelSelector} from '../reducers/register'
+import {wyjsciaHashSelector, wySatelHashSelector} from '../reducers/register'
 import {konfigSelector} from '../reducers/ustawienia'
 import CzujkaForm from './CzujkaForm'
 // import {zmienRejestr} from '../actions/rejestr'
@@ -74,8 +74,8 @@ class Dom extends React.Component {
 
 function mapStateToProps (state){
     return {
-        wyjscia: wyjsciaSelector(state),
-        wySatel: wySatelSelector(state),
+        wyjscia: wyjsciaHashSelector(state),
+        wySatel: wySatelHashSelector(state),
         konfig: konfigSelector(state), 
     }
   }
