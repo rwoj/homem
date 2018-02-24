@@ -16,6 +16,7 @@ const store=createStore(
   rootReducer,
   composeWithDevTools(applyMiddleware(thunk)) 
 )
+
 const socket = openSocket('http://192.168.0.133:8081')
 
 socket.on('wyjscia', (dane)=>store.dispatch(zmianaRejestruWyjscia(dane)))
