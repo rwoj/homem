@@ -1,33 +1,22 @@
 import React from 'react'
-import PropTypes from "prop-types"
 import {Route} from 'react-router-dom'
 
-// import TopNavigation from "./components/TopNavigation"
 import Dom from "./components/Dom"
-// import Register from "./components/pages/Register"
-// import Ustawienia from "./components/pages/Ustawienia"
-// // import Konfiguracja from "./components/pages/Konfiguracja"
-// import Ogrzewanie from "./components/forms/Ogrzewanie"
-// import Swiatla from './components/forms/Swiatla'
-// import Czujki from './components/forms/Czujki'
+import Swiatlo from './components/Swiatlo'
+import Ogrzewanie from "./components/Ogrzewanie"
 
 const App = ({location}) => (
     <div>
-      {/* <TopNavigation /> */}
       <Route  location={location} path="/" exact component={Dom} />
-      {/* <Route  location={location} path="/rejestr" exact component={Register}  />
-      <Route  location={location} path="/ustawienia" exact component={Ustawienia}  />
-      <Route  location={location} path="/konfiguracja" exact component={Konfiguracja}  /> 
       <Route  location={location} path="/ogrzewanie" exact component={Ogrzewanie}  />
-      <Route  location={location} path="/swiatla" exact component={Swiatla}  />
-      <Route  location={location} path="/czujki" exact component={Czujki}  /> */}
+      <Route  location={location} path="/swiatlo" exact component={Swiatlo}  /> 
     </div>
 )
 
-App.propTypes = {
-  location: PropTypes.shape({
-    pathname: PropTypes.string.isRequired
-  }).isRequired,
-}
+// App.propTypes = {
+//   location: PropTypes.shape({
+//     pathname: PropTypes.string.isRequired
+//   }).isRequired,
+// }
 
 export default App;

@@ -1,16 +1,15 @@
 import React from 'react'
 
-const SwiatloForm = ({currentSwiatlo}) => {
-    const listaSwiatel = currentSwiatlo.map(item=>
-    <li key={item.id}>
-         {item.nazwaLokalu} ({item.nazwa}
-    </li>)
-    return (
-            <ol>
-                {listaSwiatel}
-            </ol>
-        )  
-}
+const SwiatloForm = ({item, zapisz}) => (
+    
+    <div key={item.id}>
+        <button onClick={()=>zapisz(item.idWySter, item.swiatlo === 1 ? 0x0 : 0x1 )}>
+            {item.swiatlo}
+        </button>  
+        {item.nazwaLokalu} {item.nazwa}
+    </div>
+)
+
 export default SwiatloForm
 
 // <TouchableOpacity  style={styles.itemBox}
@@ -20,3 +19,4 @@ export default SwiatloForm
 //     <Text style={styles.item}>{item.nazwa} </Text>
 // </TouchableOpacity>
 
+// 
