@@ -21,8 +21,8 @@ const store = createStore(
   composeWithDevTools(applyMiddleware(thunk))
 );
 
-const socket = openSocket('http://192.168.0.133:8081')
-// const socket = openSocket('http://localhost:8081')
+// const socket = openSocket('http://192.168.0.133:8081')
+const socket = openSocket('http://localhost:8081')
 
 socket.on('wyjscia', (dane)=>store.dispatch(zmianaRejestruWyjscia(dane)))
 socket.on('wySatel', (dane)=>store.dispatch(zmianaRejestruWySatel(dane)))
